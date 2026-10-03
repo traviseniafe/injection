@@ -14,7 +14,14 @@ def load_attacks(path:str) -> list[AttackCase]:
 
     attacks = []
 
+    seen_ids = set()
+    
     for item in data:
+        if item["id"] in seen_ids:
+            raise ValueError("Duplicate attack ID found:", item["id"])
+        else:
+            seen_ids.add(item["id"])
+            
         attack = AttackCase(
             id=item["id"],
             category=item["category"],
