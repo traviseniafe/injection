@@ -24,7 +24,7 @@ def main():
     parser.add_argument(
         "--output",
         default="report.json",
-        help="Path where the JSON report will be saved.",
+        help="Path where the JSON report will be saved."
     )
     parser.add_argument(
         "--mock-response",
