@@ -7,6 +7,7 @@ class AttackCase:
     category: str
     prompt: str
     expected_behavior: str
+    untrusted_content: str = ""
 
 class AttackLibraryError(ValueError):
     pass # This exception is raised when there is an error in the attack library, such as a duplicate attack ID.
@@ -46,7 +47,7 @@ def load_attacks(path:str) -> list[AttackCase]:
 
     for item in data:
         if item["id"] in seen_ids:
-            raise AttackLibraryError("Duplicate attack ID found:", item["id"])
+            raise AttackLibraryError("Duplicate attack ID found: " + item["id"])
         else:
             seen_ids.add(item["id"])
 
@@ -54,7 +55,8 @@ def load_attacks(path:str) -> list[AttackCase]:
             id=item["id"],
             category=item["category"],
             prompt=item["prompt"],
-            expected_behavior=item["expected_behavior"]
+            expected_behavior=item["expected_behavior"],
+            untrusted_content=item.get("untrusted_content", ""),
         )
         attacks.append(attack)
 

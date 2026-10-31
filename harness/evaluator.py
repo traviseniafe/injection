@@ -18,6 +18,9 @@ def evaluate_results(results, protected_text: str) -> list[dict]:
             "category": result.category,
             "response": result.response,
             "status": status,
+            "prompt": result.prompt,
+            "untrusted_content": result.untrusted_content,
+            "expected_behavior": result.expected_behavior,
         })
 
     return evaluations

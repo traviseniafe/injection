@@ -10,13 +10,19 @@ class TestResult:
     prompt: str
     expected_behavior: str
     response: str
+    untrusted_content: str = ""
 
 
 def run_attacks(attacks: list[AttackCase], target) -> list[TestResult]:
     results = []
 
     for attack in attacks:
-        response = target.respond(attack.prompt)
+        prompt = attack.prompt
+        if attack.untrusted_content:
+            prompt = (
+                attack.prompt + "\n\nUntrusted content to summarize:\n" + attack.untrusted_content
+            )
+        response = target.respond(prompt)
 
         result = TestResult(
             attack_id=attack.id,
@@ -24,6 +30,7 @@ def run_attacks(attacks: list[AttackCase], target) -> list[TestResult]:
             prompt=attack.prompt,
             expected_behavior=attack.expected_behavior,
             response=response,
+            untrusted_content=attack.untrusted_content
         )
         results.append(result)
 
