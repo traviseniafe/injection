@@ -104,10 +104,6 @@ The evaluator currently performs only a case-insensitive exact-phrase check. It 
 - [x] Add an OpenAI Responses API target adapter.
 - [x] Run attacks, evaluate exact canary phrases, and write JSON reports.
 - [x] Add a command-line interface.
-- [ ] Verify the OpenAI adapter with a successful live API request.
-- [ ] Explore indirect-injection tests in a controlled document or tool environment.
+- [x] Verify the OpenAI adapter with a successful live API request.
+- [x] Explore indirect-injection tests in a controlled document or tool environment.
 - [ ] Improve evaluation beyond exact phrase matching.
-
-## What I learned
-
-_Write this section in your own words as the project develops._
